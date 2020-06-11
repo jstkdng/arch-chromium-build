@@ -10,8 +10,12 @@ RUN useradd --create-home build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # install chromium dependencies
-SHELL ["/bin/bash", "-c", "source <(curl -SL https://raw.githubusercontent.com/felixonmars/archlinux-packages/master/chromium/repos/extra-x86_64/PKGBUILD)"]
+SHELL ["/bin/bash", "-c"]
+RUN source <(curl -SL https://raw.githubusercontent.com/felixonmars/archlinux-packages/master/chromium/repos/extra-x86_64/PKGBUILD)
 RUN pacman -Syu --noconfirm --needed --asdeps "${makedepends[@]}" "${depends[@]}"
+
+# restore old shell
+SHELL ["/bin/sh", "-c"]
 
 USER build
 WORKDIR /home/build
