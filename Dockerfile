@@ -4,7 +4,7 @@ LABEL maintainer="jk@vin.ovh"
 
 RUN pacman -Syu --needed --noconfirm sudo namcap fakeroot audit grep diffutils
 
-RUN pacman -S --noconfirm base-devel distcc
+RUN pacman -S --noconfirm base-devel distcc git
 
 RUN useradd --create-home build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
