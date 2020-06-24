@@ -2,9 +2,7 @@ FROM archlinux/base
 
 LABEL maintainer="jk@vin.ovh"
 
-RUN pacman -Syu --needed --noconfirm sudo namcap fakeroot audit grep diffutils
-
-RUN pacman -S --noconfirm base-devel git chromium python-selenium
+RUN pacman -Syu --needed --noconfirm sudo namcap fakeroot audit grep diffutils base-devel git chromium python-selenium
 
 RUN useradd --create-home build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
